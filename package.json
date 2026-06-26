@@ -1,0 +1,13 @@
+{
+  "name": "nexusrealtime-ideas",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "cascadeseeder:folderwalker": "node harnesses/cascadeseeder-lite/scripts/run-folderwalker.mjs",
+    "idea-forge:run": "npm run cascadeseeder:folderwalker"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
