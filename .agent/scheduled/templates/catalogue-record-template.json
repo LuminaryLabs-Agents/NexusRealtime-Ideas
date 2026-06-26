@@ -1,0 +1,12 @@
+{
+  "date": "YYYY-MM-DD",
+  "lane": "00-name",
+  "scopeFolder": "scopes/...",
+  "findingType": "similar-domain | unique-domain | duplicate | split-needed | blocker | builder-candidate",
+  "kitOrIdea": "",
+  "summary": "",
+  "reuseCandidate": false,
+  "builderReady": false,
+  "proofNeeded": [],
+  "doNotMerge": []
+}
