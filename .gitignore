@@ -1,0 +1,11 @@
+# Local model/runtime downloads
+models/
+vendor/
+.cache/
+
+# Runtime-only folder maps; committed run artifacts live under ideas/generated-runs/
+.agent/runtime/
+
+# Node
+node_modules/
+npm-debug.log*
