@@ -3,6 +3,10 @@ name: CascadeSeeder Lite
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - "ideas/generated-runs/**"
+      - ".agent/run-log.md"
+      - ".agent/turn-ledger/**"
   workflow_dispatch:
 
 permissions:
@@ -15,9 +19,28 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      - name: Run harness
-        run: node harnesses/cascadeseeder-lite/scripts/run-folderwalker.mjs
+          node-version: "20"
+      - name: Prepare CascadeSeeder prompt
+        run: node harnesses/cascadeseeder-lite/scripts/run-folderwalker.mjs --prepare
+      - name: Apply CascadeSeeder output
+        run: node harnesses/cascadeseeder-lite/scripts/run-folderwalker.mjs --apply
+      - name: Print full run log
+        run: |
+          RUN_ID="$(cat .agent/runtime/cascadeseeder-run-id)"
+          cat "ideas/generated-runs/${RUN_ID}/full-run-log.md"
+      - name: Commit generated idea output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ideas scopes .agent/scheduled/lanes .agent/run-log.md .agent/turn-ledger
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+          else
+            git commit -m "chore(cascadeseeder): write idea run [cascadeseeder] [skip ci]"
+            git push
+          fi
