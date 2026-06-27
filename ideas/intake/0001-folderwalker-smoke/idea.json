@@ -1,0 +1,9 @@
+{
+  "id": "0001-folderwalker-smoke",
+  "title": "FolderWalker Smoke Idea",
+  "status": "intake",
+  "source": "manual-smoke-test",
+  "startingScopeGuess": "scopes/10-atomic-domains/pressure-resource",
+  "createdAt": "2026-06-27",
+  "expansionCount": 0
+}
