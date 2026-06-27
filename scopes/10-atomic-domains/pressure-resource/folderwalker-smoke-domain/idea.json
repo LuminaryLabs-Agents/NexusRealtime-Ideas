@@ -1,0 +1,15 @@
+{
+  "ideaId": "0001-folderwalker-smoke",
+  "title": "FolderWalker Smoke Domain",
+  "summary": "A folder scoped domain idea generated from the smoke intake file.",
+  "selectedScopeFolder": "scopes/10-atomic-domains/pressure-resource",
+  "newFolderSlug": "folderwalker-smoke-domain",
+  "domainType": "atomic-domain",
+  "proofNeeded": [
+    "push workflow run",
+    "manual fallback smoke output",
+    "full run log"
+  ],
+  "runId": "manual-smoke-2026-06-27-cascadeseeder-lite",
+  "targetFolder": "scopes/10-atomic-domains/pressure-resource/folderwalker-smoke-domain"
+}
