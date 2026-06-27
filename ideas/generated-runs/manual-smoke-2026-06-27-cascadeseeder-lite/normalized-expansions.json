@@ -1,0 +1,12 @@
+[
+  {
+    "idea": "0001-folderwalker-smoke",
+    "title": "FolderWalker Smoke Domain",
+    "targetFolder": "scopes/10-atomic-domains/pressure-resource/folderwalker-smoke-domain"
+  },
+  {
+    "idea": "seed-manual-smoke-2026-06-27",
+    "title": "Signal Pressure Ledger",
+    "targetFolder": "ideas/generated-runs/manual-smoke-2026-06-27-cascadeseeder-lite/seed-idea.json"
+  }
+]
