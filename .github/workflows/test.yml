@@ -69,17 +69,7 @@ jobs:
           echo "${LIVE_URL}" > .agent/runtime/live/public-url
           if [ -n "$LIVE_URL" ]; then
             node harnesses/cascadeseeder-lite/live/live-log.mjs event live-monitor done "${LIVE_URL}"
-            if [ -n "${DISCORD_WEBHOOK_URL:-}" ]; then
-              python3 - <<'PY'
-import json, os, urllib.request
-url = os.environ.get('DISCORD_WEBHOOK_URL', '')
-live = open('.agent/runtime/live/public-url', encoding='utf-8').read().strip()
-if url and live:
-    data = json.dumps({'content': 'Live session visible here: ' + live}).encode('utf-8')
-    req = urllib.request.Request(url, data=data, headers={'Content-Type': 'application/json'}, method='POST')
-    urllib.request.urlopen(req, timeout=20).read()
-PY
-            fi
+            DISCORD_MESSAGE="Live session visible here: ${LIVE_URL}" node harnesses/cascadeseeder-lite/live/post-discord.mjs
           else
             node harnesses/cascadeseeder-lite/live/live-log.mjs event live-monitor blocked "cloudflared url not detected"
           fi
@@ -165,16 +155,8 @@ PY
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           node harnesses/cascadeseeder-lite/live/live-log.mjs event workflow done "workflow finishing" || true
-          if [ -n "${DISCORD_WEBHOOK_URL:-}" ]; then
-            python3 - <<'PY'
-import json, os, pathlib, urllib.request
-url = os.environ.get('DISCORD_WEBHOOK_URL', '')
-run_id_path = pathlib.Path('.agent/runtime/cascadeseeder-run-id')
-run_id = run_id_path.read_text().strip() if run_id_path.exists() else 'unknown'
-content = 'CascadeSeeder run complete. Run ID: ' + run_id
-if url:
-    data = json.dumps({'content': content}).encode('utf-8')
-    req = urllib.request.Request(url, data=data, headers={'Content-Type': 'application/json'}, method='POST')
-    urllib.request.urlopen(req, timeout=20).read()
-PY
+          RUN_ID="unknown"
+          if [ -f .agent/runtime/cascadeseeder-run-id ]; then
+            RUN_ID="$(cat .agent/runtime/cascadeseeder-run-id)"
           fi
+          DISCORD_MESSAGE="CascadeSeeder run complete. Run ID: ${RUN_ID}" node harnesses/cascadeseeder-lite/live/post-discord.mjs
