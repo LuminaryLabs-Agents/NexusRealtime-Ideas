@@ -20,27 +20,42 @@ main = safe edit branch
 build = live/model runner trigger branch
 ```
 
+## Primary model provider
+
+The workflow tries NVIDIA NIM first, then falls back to the existing llama.cpp/Hugging Face GGUF path only if no NVIDIA model output exists.
+
 ## Required secret for Discord
 
 ```text
 DISCORD_WEBHOOK_URL
 ```
 
-## Required secret for model-backed runs
+## Required secret for NVIDIA NIM
+
+```text
+NVIDIA_API_KEY
+```
+
+## NVIDIA defaults configured in workflow
+
+```text
+MODEL_PROVIDER=nvidia
+NVIDIA_MODEL=minimaxai/minimax-m3
+NVIDIA_BASE_URL=https://integrate.api.nvidia.com/v1
+NVIDIA_MAX_TOKENS=4096
+NVIDIA_TEMPERATURE=0.7
+NVIDIA_TOP_P=0.95
+NVIDIA_TIMEOUT_SECONDS=120
+```
+
+## Optional llama.cpp fallback secrets
 
 ```text
 HF_MODEL_URL
-```
-
-Use a direct `.gguf` file URL from a Qwen3.5-2B GGUF repository.
-
-## Optional secret
-
-```text
 HF_TOKEN
 ```
 
-Use this only if Hugging Face requires authentication or rate-limit relief.
+`HF_MODEL_URL` should be a direct `.gguf` file URL if you want the local llama.cpp fallback. `HF_TOKEN` is only needed if Hugging Face requires authentication or rate-limit relief.
 
 ## Workflow syntax note
 
