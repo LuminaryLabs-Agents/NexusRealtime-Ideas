@@ -1,0 +1,22 @@
+{
+  "id": "seed-manual-smoke-2026-06-27",
+  "title": "Signal Pressure Ledger",
+  "summary": "A reusable folder-scoped seed for ledgered pressure signals that can feed route, defense, or survival loops while staying renderer-neutral.",
+  "recommendedScopeFolder": "scopes/10-atomic-domains/pressure-resource",
+  "newFolderSlug": "signal-pressure-ledger",
+  "domainType": "atomic-domain",
+  "childFolders": [
+    {
+      "slug": "signal-state",
+      "purpose": "Track named pressure signals."
+    },
+    {
+      "slug": "threshold-events",
+      "purpose": "Describe warning and recovery transitions."
+    }
+  ],
+  "proofNeeded": [
+    "smoke test",
+    "fixed-tick replay"
+  ]
+}
