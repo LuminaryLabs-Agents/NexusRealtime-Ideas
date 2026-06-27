@@ -19,6 +19,13 @@ jobs:
     if: ${{ github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[cascadeseeder]') }}
     env:
       REQUIRE_MODEL: "false"
+      MODEL_PROVIDER: "nvidia"
+      NVIDIA_MODEL: "minimaxai/minimax-m3"
+      NVIDIA_BASE_URL: "https://integrate.api.nvidia.com/v1"
+      NVIDIA_MAX_TOKENS: "4096"
+      NVIDIA_TEMPERATURE: "0.7"
+      NVIDIA_TOP_P: "0.95"
+      NVIDIA_TIMEOUT_SECONDS: "120"
       LLAMA_N_PREDICT: "900"
       LLAMA_TEMP: "0.7"
       LLAMA_CTX_SIZE: "4096"
@@ -80,14 +87,30 @@ jobs:
           node harnesses/cascadeseeder-lite/scripts/run-folderwalker.mjs --prepare
           node harnesses/cascadeseeder-lite/live/live-log.mjs event prepare done "prompt ready"
 
-      - name: Download model, build llama.cpp, run model once
+      - name: Run NVIDIA NIM model once
+        env:
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+        run: |
+          node harnesses/cascadeseeder-lite/live/live-log.mjs event nvidia running "calling NVIDIA NIM"
+          python3 harnesses/cascadeseeder-lite/python/run_nvidia_once.py
+          if [ -s .agent/runtime/cascadeseeder-model-output.txt ]; then
+            node harnesses/cascadeseeder-lite/live/live-log.mjs event nvidia done "NVIDIA output ready"
+          else
+            node harnesses/cascadeseeder-lite/live/live-log.mjs event nvidia skipped "no NVIDIA output"
+          fi
+
+      - name: Fallback to llama.cpp if needed
         env:
           HF_MODEL_URL: ${{ secrets.HF_MODEL_URL }}
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          node harnesses/cascadeseeder-lite/live/live-log.mjs event model running "download build infer"
-          python3 harnesses/cascadeseeder-lite/python/run_llama_once.py
-          node harnesses/cascadeseeder-lite/live/live-log.mjs event model done "model step finished"
+          if [ -s .agent/runtime/cascadeseeder-model-output.txt ]; then
+            node harnesses/cascadeseeder-lite/live/live-log.mjs event llama skipped "model output already exists"
+          else
+            node harnesses/cascadeseeder-lite/live/live-log.mjs event llama running "fallback download build infer"
+            python3 harnesses/cascadeseeder-lite/python/run_llama_once.py
+            node harnesses/cascadeseeder-lite/live/live-log.mjs event llama done "fallback step finished"
+          fi
 
       - name: Apply CascadeSeeder output
         run: |
@@ -104,6 +127,8 @@ jobs:
             echo "=== CascadeSeeder full run log ==="
             cat "ideas/generated-runs/${RUN_ID}/full-run-log.md" || true
           fi
+          echo "=== NVIDIA NIM run log ==="
+          cat ".agent/runtime/nvidia-run-log.md" || true
           echo "=== llama.cpp run log ==="
           cat ".agent/runtime/llama-run-log.md" || true
           echo "=== live events ==="
@@ -117,6 +142,7 @@ jobs:
           name: cascadeseeder-lite-run
           path: |
             ideas/generated-runs/**
+            .agent/runtime/nvidia-run-log.md
             .agent/runtime/llama-run-log.md
             .agent/runtime/live/**
             .agent/turn-ledger/**
