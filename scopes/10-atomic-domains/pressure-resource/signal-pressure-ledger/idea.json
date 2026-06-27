@@ -1,0 +1,28 @@
+{
+  "ideaId": "seed-2026-06-27T09-52-29-530Z",
+  "title": "Signal Pressure Ledger",
+  "summary": "A folder-scoped seed for reusable pressure signal ideas.",
+  "selectedScopeFolder": "scopes/10-atomic-domains/pressure-resource",
+  "newFolderSlug": "signal-pressure-ledger",
+  "domainType": "atomic-domain",
+  "hierarchy": [
+    {
+      "path": "child-domains/signal-state",
+      "purpose": "Track named pressure signals."
+    },
+    {
+      "path": "child-domains/threshold-events",
+      "purpose": "Describe warning and recovery transitions."
+    }
+  ],
+  "proofNeeded": [
+    "smoke test",
+    "fixed-tick replay"
+  ],
+  "doNotMerge": [
+    "runtime code",
+    "renderer ownership"
+  ],
+  "runId": "2026-06-27T09-52-29-530Z-cascadeseeder-lite",
+  "targetFolder": "scopes/10-atomic-domains/pressure-resource/signal-pressure-ledger"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "seed-2026-06-27T09-52-29-530Z",
+  "title": "Signal Pressure Ledger",
+  "summary": "A folder-scoped seed for reusable pressure signal ideas.",
+  "recommendedScopeFolder": "scopes/10-atomic-domains/pressure-resource",
+  "newFolderSlug": "signal-pressure-ledger",
+  "domainType": "atomic-domain",
+  "childFolders": [
+    {
+      "slug": "signal-state",
+      "purpose": "Track named pressure signals."
+    },
+    {
+      "slug": "threshold-events",
+      "purpose": "Describe warning and recovery transitions."
+    }
+  ],
+  "proofNeeded": [
+    "smoke test",
+    "fixed-tick replay"
+  ]
+}

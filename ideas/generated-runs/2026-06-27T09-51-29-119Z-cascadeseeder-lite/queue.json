@@ -1,0 +1,18 @@
+[
+  {
+    "kind": "intake",
+    "id": "0001-folderwalker-smoke",
+    "title": "FolderWalker Smoke Idea",
+    "sourcePath": "ideas/intake/0001-folderwalker-smoke",
+    "summary": "# FolderWalker Smoke Idea\n\nA small intake idea used to verify that CascadeSeeder Lite can scan `ideas/intake/`, generate a seed, place output under `scopes/`, and write a full run log.\n\n## Starting scope guess\n\n`scopes/10-atomic-domains/pressure-resource`\n\n## Desired expansion\n\nTurn this into a folder-scoped reusable domain idea with proof notes and no renderer/runtime ownership.\n",
+    "meta": {
+      "id": "0001-folderwalker-smoke",
+      "title": "FolderWalker Smoke Idea",
+      "status": "intake",
+      "source": "manual-smoke-test",
+      "startingScopeGuess": "scopes/10-atomic-domains/pressure-resource",
+      "createdAt": "2026-06-27",
+      "expansionCount": 0
+    }
+  }
+]
