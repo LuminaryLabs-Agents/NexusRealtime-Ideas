@@ -27,6 +27,7 @@ jobs:
       LLAMA_TEMP: "0.7"
       LLAMA_CTX_SIZE: "4096"
       LLAMA_THREADS: "2"
+      LIVE_MONITOR_PORT: "8080"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -48,25 +49,77 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y cmake build-essential git curl
 
+      - name: Start live monitor
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          mkdir -p .agent/runtime/live
+          node harnesses/cascadeseeder-lite/live/live-log.mjs reset
+          node harnesses/cascadeseeder-lite/live/live-log.mjs event live-monitor running "starting local monitor"
+          node harnesses/cascadeseeder-lite/live/monitor-server.mjs > .agent/runtime/live/monitor-server.log 2>&1 &
+          echo $! > .agent/runtime/live/monitor-server.pid
+          curl -L --retry 3 https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -o "$RUNNER_TEMP/cloudflared"
+          chmod +x "$RUNNER_TEMP/cloudflared"
+          "$RUNNER_TEMP/cloudflared" tunnel --url "http://127.0.0.1:${LIVE_MONITOR_PORT}" --no-autoupdate > .agent/runtime/live/cloudflared.log 2>&1 &
+          echo $! > .agent/runtime/live/cloudflared.pid
+          LIVE_URL=""
+          for i in $(seq 1 30); do
+            LIVE_URL=$(grep -Eo 'https://[-a-zA-Z0-9.]+\.trycloudflare\.com' .agent/runtime/live/cloudflared.log | head -n 1 || true)
+            if [ -n "$LIVE_URL" ]; then
+              break
+            fi
+            sleep 1
+          done
+          echo "${LIVE_URL}" > .agent/runtime/live/public-url
+          if [ -n "$LIVE_URL" ]; then
+            node harnesses/cascadeseeder-lite/live/live-log.mjs event live-monitor done "${LIVE_URL}"
+            if [ -n "${DISCORD_WEBHOOK_URL:-}" ]; then
+              python3 - <<'PY'
+import json, os, urllib.request
+url = os.environ.get('DISCORD_WEBHOOK_URL', '')
+live = open('.agent/runtime/live/public-url', encoding='utf-8').read().strip()
+if url and live:
+    data = json.dumps({'content': 'Live session visible here: ' + live}).encode('utf-8')
+    req = urllib.request.Request(url, data=data, headers={'Content-Type': 'application/json'}, method='POST')
+    urllib.request.urlopen(req, timeout=20).read()
+PY
+            fi
+          else
+            node harnesses/cascadeseeder-lite/live/live-log.mjs event live-monitor blocked "cloudflared url not detected"
+          fi
+
       - name: Prepare CascadeSeeder prompt
-        run: node harnesses/cascadeseeder-lite/scripts/run-folderwalker.mjs --prepare
+        run: |
+          node harnesses/cascadeseeder-lite/live/live-log.mjs event prepare running "building prompt"
+          node harnesses/cascadeseeder-lite/scripts/run-folderwalker.mjs --prepare
+          node harnesses/cascadeseeder-lite/live/live-log.mjs event prepare done "prompt ready"
 
       - name: Download model, build llama.cpp, run model once
         env:
           HF_MODEL_URL: ${{ vars.HF_MODEL_URL }}
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: python3 harnesses/cascadeseeder-lite/python/run_llama_once.py
+        run: |
+          node harnesses/cascadeseeder-lite/live/live-log.mjs event model running "download build infer"
+          python3 harnesses/cascadeseeder-lite/python/run_llama_once.py
+          node harnesses/cascadeseeder-lite/live/live-log.mjs event model done "model step finished"
 
       - name: Apply CascadeSeeder output
-        run: node harnesses/cascadeseeder-lite/scripts/run-folderwalker.mjs --apply
+        run: |
+          node harnesses/cascadeseeder-lite/live/live-log.mjs event apply running "writing scoped output"
+          node harnesses/cascadeseeder-lite/scripts/run-folderwalker.mjs --apply
+          node harnesses/cascadeseeder-lite/live/live-log.mjs event apply done "scoped output written"
 
       - name: Print full run logs
         run: |
+          node harnesses/cascadeseeder-lite/live/live-log.mjs event logs running "printing logs"
           RUN_ID="$(cat .agent/runtime/cascadeseeder-run-id)"
           echo "=== CascadeSeeder full run log ==="
           cat "ideas/generated-runs/${RUN_ID}/full-run-log.md"
           echo "=== llama.cpp run log ==="
           cat ".agent/runtime/llama-run-log.md" || true
+          echo "=== live events ==="
+          cat ".agent/runtime/live/events.jsonl" || true
+          node harnesses/cascadeseeder-lite/live/live-log.mjs event logs done "logs printed"
 
       - name: Upload run artifact
         uses: actions/upload-artifact@v4
@@ -75,16 +128,40 @@ jobs:
           path: |
             ideas/generated-runs/**
             .agent/runtime/llama-run-log.md
+            .agent/runtime/live/**
             .agent/turn-ledger/**
 
       - name: Commit generated idea output
         run: |
+          node harnesses/cascadeseeder-lite/live/live-log.mjs event commit running "committing generated output"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add ideas scopes .agent/scheduled/lanes .agent/run-log.md .agent/turn-ledger
           if git diff --cached --quiet; then
             echo "No generated changes to commit."
+            node harnesses/cascadeseeder-lite/live/live-log.mjs event commit done "no changes"
           else
             git commit -m "chore(cascadeseeder): write idea run [cascadeseeder] [skip ci]"
             git push
+            node harnesses/cascadeseeder-lite/live/live-log.mjs event commit done "pushed generated output"
+          fi
+
+      - name: Post final Discord summary
+        if: always()
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          node harnesses/cascadeseeder-lite/live/live-log.mjs event workflow done "workflow finishing" || true
+          if [ -n "${DISCORD_WEBHOOK_URL:-}" ]; then
+            python3 - <<'PY'
+import json, os, pathlib, urllib.request
+url = os.environ.get('DISCORD_WEBHOOK_URL', '')
+run_id_path = pathlib.Path('.agent/runtime/cascadeseeder-run-id')
+run_id = run_id_path.read_text().strip() if run_id_path.exists() else 'unknown'
+content = 'CascadeSeeder run complete. Run ID: ' + run_id
+if url:
+    data = json.dumps({'content': content}).encode('utf-8')
+    req = urllib.request.Request(url, data=data, headers={'Content-Type': 'application/json'}, method='POST')
+    urllib.request.urlopen(req, timeout=20).read()
+PY
           fi
