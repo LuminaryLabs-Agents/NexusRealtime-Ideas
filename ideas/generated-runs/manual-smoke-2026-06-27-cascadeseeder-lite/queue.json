@@ -1,0 +1,14 @@
+[
+  {
+    "kind": "intake",
+    "id": "0001-folderwalker-smoke",
+    "title": "FolderWalker Smoke Idea",
+    "sourcePath": "ideas/intake/0001-folderwalker-smoke"
+  },
+  {
+    "kind": "seed",
+    "id": "seed-manual-smoke-2026-06-27",
+    "title": "Signal Pressure Ledger",
+    "sourcePath": "ideas/generated-runs/manual-smoke-2026-06-27-cascadeseeder-lite/seed-idea.json"
+  }
+]
