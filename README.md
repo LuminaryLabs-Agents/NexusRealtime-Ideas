@@ -27,6 +27,29 @@ NexusRealtime-Experiments = playable validation hosts
 NexusRealtime-Ideas       = domain catalogue, exploration, saved states, and builder queues
 ```
 
+## Build branch runner
+
+```text
+main  = safe edit branch
+build = live/model runner trigger branch
+```
+
+The build branch workflow starts the live monitor, posts the temporary Discord link, runs the NVIDIA NIM provider first, falls back to llama.cpp only if needed, then writes generated idea output and logs.
+
+Required runtime secrets:
+
+```text
+DISCORD_WEBHOOK_URL
+NVIDIA_API_KEY
+```
+
+Optional fallback secrets:
+
+```text
+HF_MODEL_URL
+HF_TOKEN
+```
+
 ## Start here
 
 Read:
