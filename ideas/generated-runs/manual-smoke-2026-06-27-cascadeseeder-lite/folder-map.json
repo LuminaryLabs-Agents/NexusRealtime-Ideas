@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-06-27T00:00:00.000Z",
+  "mode": "manual-smoke",
+  "scopes": [
+    "scopes/00-inbox",
+    "scopes/10-atomic-domains",
+    "scopes/10-atomic-domains/pressure-resource",
+    "scopes/20-domain-families",
+    "scopes/30-composite-loops",
+    "scopes/40-host-bridges",
+    "scopes/50-render-descriptors",
+    "scopes/60-incubation-suites",
+    "scopes/70-promotion-candidates",
+    "scopes/80-blocked-or-held"
+  ],
+  "intake": [
+    "ideas/intake/0001-folderwalker-smoke"
+  ]
+}
