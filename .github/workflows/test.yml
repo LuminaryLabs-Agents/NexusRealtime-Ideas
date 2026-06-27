@@ -12,27 +12,71 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: cascadeseeder-lite-main
+  cancel-in-progress: false
+
 jobs:
   cascadeseeder:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     if: ${{ !contains(github.event.head_commit.message, '[cascadeseeder]') }}
+    env:
+      REQUIRE_MODEL: "false"
+      LLAMA_N_PREDICT: "900"
+      LLAMA_TEMP: "0.7"
+      LLAMA_CTX_SIZE: "4096"
+      LLAMA_THREADS: "2"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           persist-credentials: true
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake build-essential git curl
+
       - name: Prepare CascadeSeeder prompt
         run: node harnesses/cascadeseeder-lite/scripts/run-folderwalker.mjs --prepare
+
+      - name: Download model, build llama.cpp, run model once
+        env:
+          HF_MODEL_URL: ${{ vars.HF_MODEL_URL }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: python3 harnesses/cascadeseeder-lite/python/run_llama_once.py
+
       - name: Apply CascadeSeeder output
         run: node harnesses/cascadeseeder-lite/scripts/run-folderwalker.mjs --apply
-      - name: Print full run log
+
+      - name: Print full run logs
         run: |
           RUN_ID="$(cat .agent/runtime/cascadeseeder-run-id)"
+          echo "=== CascadeSeeder full run log ==="
           cat "ideas/generated-runs/${RUN_ID}/full-run-log.md"
+          echo "=== llama.cpp run log ==="
+          cat ".agent/runtime/llama-run-log.md" || true
+
+      - name: Upload run artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cascadeseeder-lite-run
+          path: |
+            ideas/generated-runs/**
+            .agent/runtime/llama-run-log.md
+            .agent/turn-ledger/**
+
       - name: Commit generated idea output
         run: |
           git config user.name "github-actions[bot]"
