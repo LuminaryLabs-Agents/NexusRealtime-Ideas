@@ -2,25 +2,21 @@ name: CascadeSeeder Lite
 
 on:
   push:
-    branches: [main]
-    paths-ignore:
-      - "ideas/generated-runs/**"
-      - ".agent/run-log.md"
-      - ".agent/turn-ledger/**"
+    branches: [build]
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: cascadeseeder-lite-main
-  cancel-in-progress: false
+  group: cascadeseeder-lite-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   cascadeseeder:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
-    if: ${{ !contains(github.event.head_commit.message, '[cascadeseeder]') }}
+    timeout-minutes: 50
+    if: ${{ github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[cascadeseeder]') }}
     env:
       REQUIRE_MODEL: "false"
       LLAMA_N_PREDICT: "900"
@@ -96,7 +92,7 @@ PY
 
       - name: Download model, build llama.cpp, run model once
         env:
-          HF_MODEL_URL: ${{ vars.HF_MODEL_URL }}
+          HF_MODEL_URL: ${{ secrets.HF_MODEL_URL }}
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           node harnesses/cascadeseeder-lite/live/live-log.mjs event model running "download build infer"
@@ -110,18 +106,22 @@ PY
           node harnesses/cascadeseeder-lite/live/live-log.mjs event apply done "scoped output written"
 
       - name: Print full run logs
+        if: always()
         run: |
-          node harnesses/cascadeseeder-lite/live/live-log.mjs event logs running "printing logs"
-          RUN_ID="$(cat .agent/runtime/cascadeseeder-run-id)"
-          echo "=== CascadeSeeder full run log ==="
-          cat "ideas/generated-runs/${RUN_ID}/full-run-log.md"
+          node harnesses/cascadeseeder-lite/live/live-log.mjs event logs running "printing logs" || true
+          if [ -f .agent/runtime/cascadeseeder-run-id ]; then
+            RUN_ID="$(cat .agent/runtime/cascadeseeder-run-id)"
+            echo "=== CascadeSeeder full run log ==="
+            cat "ideas/generated-runs/${RUN_ID}/full-run-log.md" || true
+          fi
           echo "=== llama.cpp run log ==="
           cat ".agent/runtime/llama-run-log.md" || true
           echo "=== live events ==="
           cat ".agent/runtime/live/events.jsonl" || true
-          node harnesses/cascadeseeder-lite/live/live-log.mjs event logs done "logs printed"
+          node harnesses/cascadeseeder-lite/live/live-log.mjs event logs done "logs printed" || true
 
       - name: Upload run artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cascadeseeder-lite-run
@@ -145,6 +145,19 @@ PY
             git push
             node harnesses/cascadeseeder-lite/live/live-log.mjs event commit done "pushed generated output"
           fi
+
+      - name: Hold live monitor briefly
+        if: always()
+        run: |
+          node harnesses/cascadeseeder-lite/live/live-log.mjs event hold running "live monitor will stay up for up to 120 seconds"
+          for i in $(seq 1 120); do
+            if [ -f .agent/runtime/live/exit-requested ]; then
+              node harnesses/cascadeseeder-lite/live/live-log.mjs event hold done "exit button requested shutdown"
+              exit 0
+            fi
+            sleep 1
+          done
+          node harnesses/cascadeseeder-lite/live/live-log.mjs event hold done "120 second hold complete"
 
       - name: Post final Discord summary
         if: always()
