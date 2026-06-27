@@ -41,3 +41,7 @@ HF_TOKEN
 ```
 
 Use this only if Hugging Face requires authentication or rate-limit relief.
+
+## Workflow syntax note
+
+Discord messages are posted through `post-discord.mjs` instead of inline Python heredocs so the workflow YAML remains valid.
