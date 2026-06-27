@@ -8,71 +8,156 @@ const runId = process.env.CASCADESEEDER_RUN_ID || `${stamp}-cascadeseeder-lite`;
 const runDir = path.join(root, 'ideas', 'generated-runs', runId);
 const runtimeDir = path.join(root, '.agent', 'runtime');
 const mode = process.argv.includes('--prepare') ? 'prepare' : process.argv.includes('--apply') ? 'apply' : 'run';
+const maxIdeas = Number(process.env.MAX_IDEAS_PER_RUN || 6);
+const maxChildren = Number(process.env.MAX_CHILD_FOLDERS_PER_IDEA || 5);
 
 function mkdir(p) { fs.mkdirSync(p, { recursive: true }); }
 function write(p, s) { mkdir(path.dirname(p)); fs.writeFileSync(p, s, 'utf8'); }
+function append(p, s) { mkdir(path.dirname(p)); fs.appendFileSync(p, s, 'utf8'); }
 function read(p, f = '') { try { return fs.readFileSync(p, 'utf8'); } catch { return f; } }
+function exists(p) { try { fs.accessSync(p); return true; } catch { return false; } }
 function rel(p) { return path.relative(root, p).replaceAll(path.sep, '/'); }
-function slug(s) { return String(s || 'idea').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'idea'; }
+function slug(s) { return String(s || 'idea').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 80) || 'idea'; }
 
 function dirs(dir, out = []) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
     if (!e.isDirectory()) continue;
-    if (['.git', 'node_modules', 'models', 'vendor'].includes(e.name)) continue;
+    if (['.git', 'node_modules', 'models', 'vendor', '.cache'].includes(e.name)) continue;
     const full = path.join(dir, e.name);
     out.push(rel(full));
-    if (rel(full).split('/').length < 6) dirs(full, out);
+    if (rel(full).split('/').length < 7) dirs(full, out);
   }
   return out.sort();
 }
 
-function map() {
+function folderMap() {
   const all = dirs(root);
-  return { generatedAt: new Date().toISOString(), scopes: all.filter((d) => d === 'scopes' || d.startsWith('scopes/')), intake: all.filter((d) => d.startsWith('ideas/intake/')), all };
+  return {
+    generatedAt: new Date().toISOString(),
+    scopes: all.filter((d) => d === 'scopes' || d.startsWith('scopes/')),
+    intake: all.filter((d) => d.startsWith('ideas/intake/')),
+    lanes: all.filter((d) => d.startsWith('.agent/scheduled/lanes/')),
+    all
+  };
+}
+
+function digest(map) {
+  const grouped = new Map();
+  for (const scope of map.scopes) {
+    const key = scope.split('/')[1] || 'root';
+    if (!grouped.has(key)) grouped.set(key, []);
+    grouped.get(key).push(scope);
+  }
+  let text = '# Scope Digest\n\nGenerated from the live folder tree.\n\n';
+  for (const key of [...grouped.keys()].sort()) {
+    text += `## ${key}\n\n`;
+    for (const item of grouped.get(key).slice(0, 60)) text += `- ${item}\n`;
+    text += '\n';
+  }
+  return text;
 }
 
 function intake() {
   const base = path.join(root, 'ideas', 'intake');
-  try {
-    return fs.readdirSync(base, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => ({ id: d.name, title: d.name.replace(/[-_]/g, ' '), path: `ideas/intake/${d.name}` }));
-  } catch { return []; }
+  if (!exists(base)) return [];
+  return fs.readdirSync(base, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .slice(0, Math.max(0, maxIdeas - 1))
+    .map((d) => {
+      const dir = path.join(base, d.name);
+      let meta = {};
+      try { meta = JSON.parse(read(path.join(dir, 'idea.json'), '{}')); } catch { meta = {}; }
+      return { kind: 'intake', id: meta.id || d.name, title: meta.title || d.name.replace(/[-_]/g, ' '), sourcePath: rel(dir), summary: read(path.join(dir, 'idea.md')).slice(0, 4000), meta };
+    });
 }
 
 function extract(text) {
-  const a = text.indexOf('{');
-  const b = text.lastIndexOf('}');
+  const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  const body = fenced ? fenced[1] : text;
+  const a = body.indexOf('{');
+  const b = body.lastIndexOf('}');
   if (a < 0 || b <= a) return null;
-  try { return JSON.parse(text.slice(a, b + 1)); } catch { return null; }
+  try { return JSON.parse(body.slice(a, b + 1)); } catch { return null; }
+}
+
+function fallbackSeed(map) {
+  return { id: `seed-${stamp}`, title: 'Signal Pressure Ledger', summary: 'A folder-scoped seed for reusable pressure signal ideas.', recommendedScopeFolder: map.scopes.find((s) => s.startsWith('scopes/10-atomic-domains/pressure-resource')) || 'scopes/00-inbox', newFolderSlug: 'signal-pressure-ledger', domainType: 'atomic-domain', childFolders: [{ slug: 'signal-state', purpose: 'Track named pressure signals.' }, { slug: 'threshold-events', purpose: 'Describe warning and recovery transitions.' }], proofNeeded: ['smoke test', 'fixed-tick replay'] };
+}
+
+function normalize(raw, idea, map) {
+  const r = raw || {};
+  const seedScope = r.selectedScopeFolder || r.recommendedScopeFolder || idea.meta?.startingScopeGuess;
+  const selectedScopeFolder = map.scopes.includes(seedScope) ? seedScope : 'scopes/00-inbox';
+  const title = r.title || idea.title || 'Untitled idea';
+  const children = Array.isArray(r.hierarchy) ? r.hierarchy : Array.isArray(r.childFolders) ? r.childFolders.map((c) => ({ path: `child-domains/${slug(c.slug || c.path || c.purpose)}`, purpose: c.purpose || c.slug || 'Child domain.' })) : [];
+  return { ideaId: r.ideaId || idea.id || slug(title), title, summary: r.summary || idea.summary || 'Generated by CascadeSeeder Lite.', selectedScopeFolder, newFolderSlug: slug(r.newFolderSlug || title), domainType: r.domainType || 'atomic-domain', hierarchy: children.slice(0, maxChildren), proofNeeded: Array.isArray(r.proofNeeded) ? r.proofNeeded : ['smoke test'], doNotMerge: Array.isArray(r.doNotMerge) ? r.doNotMerge : ['runtime code', 'renderer ownership'] };
+}
+
+function nextFolder(base) {
+  if (!exists(base)) return base;
+  for (let i = 2; i < 100; i++) if (!exists(`${base}-${i}`)) return `${base}-${i}`;
+  return `${base}-${Date.now()}`;
+}
+
+function writeIdea(expansion) {
+  const target = nextFolder(path.join(root, expansion.selectedScopeFolder, expansion.newFolderSlug));
+  write(path.join(target, 'README.md'), `# ${expansion.title}\n\n${expansion.summary}\n\n## Domain type\n\n${expansion.domainType}\n\n## Source\n\nCascadeSeeder Lite run ${runId}.\n`);
+  write(path.join(target, 'idea.json'), JSON.stringify({ ...expansion, runId, targetFolder: rel(target) }, null, 2) + '\n');
+  write(path.join(target, 'proof-needed.md'), `# Proof Needed\n\n${expansion.proofNeeded.map((x) => `- ${x}`).join('\n')}\n`);
+  write(path.join(target, 'do-not-merge.md'), `# Do Not Merge\n\n${expansion.doNotMerge.map((x) => `- ${x}`).join('\n')}\n`);
+  for (const child of expansion.hierarchy) {
+    const childPath = String(child.path || `child-domains/${slug(child.slug || child.purpose)}`).split('/').filter(Boolean).slice(0, 3).map(slug).join('/');
+    write(path.join(target, childPath, 'README.md'), `# ${childPath.split('/').pop()}\n\n${child.purpose || 'Child domain.'}\n`);
+  }
+  return rel(target);
+}
+
+function prompt(map, scopeDigest, queue) {
+  return `You are CascadeSeeder Lite FolderWalker. Return strict JSON only. Create one seedIdea and expansions for each intake item. Choose only existing scope folders. Do not propose implementation code.\n\nJSON keys: seedIdea, expansions.\n\n${scopeDigest}\n\nIntake queue:\n${JSON.stringify(queue, null, 2)}\n\nAvailable scopes:\n${JSON.stringify(map.scopes.slice(0, 200), null, 2)}\n`;
 }
 
 function prepare() {
   mkdir(runDir); mkdir(runtimeDir);
-  const folderMap = map();
+  const map = folderMap();
+  const scopeDigest = digest(map);
   const queue = intake();
-  const prompt = `Generate one seed idea and expand these intake ideas. Return JSON with seedIdea and expansions. Use one of these scope folders:\n${folderMap.scopes.join('\n')}\n\nIntake:\n${JSON.stringify(queue, null, 2)}\n`;
-  write(path.join(runDir, 'folder-map.json'), JSON.stringify(folderMap, null, 2) + '\n');
+  write(path.join(runDir, 'folder-map.json'), JSON.stringify(map, null, 2) + '\n');
   write(path.join(runDir, 'queue.json'), JSON.stringify(queue, null, 2) + '\n');
+  write(path.join(runDir, 'scope-digest.md'), scopeDigest);
   write(path.join(runtimeDir, 'cascadeseeder-run-id'), runId);
-  write(path.join(runtimeDir, 'cascadeseeder-prompt.md'), prompt);
-  console.log(`Prepared ${runId}`);
+  write(path.join(runtimeDir, 'cascadeseeder-prompt.md'), prompt(map, scopeDigest, queue));
+  console.log(`Prepared ${runId} with ${queue.length} intake idea(s).`);
 }
 
 function apply() {
   mkdir(runDir);
-  const folderMap = JSON.parse(read(path.join(runDir, 'folder-map.json'), JSON.stringify(map())));
+  const map = JSON.parse(read(path.join(runDir, 'folder-map.json'), JSON.stringify(folderMap())));
+  const queue = intake();
   const modelText = read(process.env.MODEL_OUTPUT_PATH || path.join(runtimeDir, 'cascadeseeder-model-output.txt'));
   const parsed = extract(modelText) || {};
-  const seed = parsed.seedIdea || { title: 'Signal Pressure Ledger', summary: 'A folder-scoped seed for reusable pressure signal ideas.', recommendedScopeFolder: folderMap.scopes.find((s) => s.startsWith('scopes/10-atomic-domains/')) || 'scopes/00-inbox', newFolderSlug: 'signal-pressure-ledger' };
-  const scope = folderMap.scopes.includes(seed.recommendedScopeFolder) ? seed.recommendedScopeFolder : 'scopes/00-inbox';
-  const target = path.join(root, scope, slug(seed.newFolderSlug || seed.title));
+  const modelOutputPresent = Boolean(modelText.trim());
+  const modelParsed = Boolean(parsed.seedIdea || parsed.expansions);
+  const seed = parsed.seedIdea || fallbackSeed(map);
+  const seedIdea = { kind: 'seed', id: seed.id || `seed-${stamp}`, title: seed.title || 'Generated seed', sourcePath: `ideas/generated-runs/${runId}/seed-idea.json`, summary: seed.summary || '', meta: seed };
+  const expansions = Array.isArray(parsed.expansions) ? parsed.expansions : [];
+  const byId = new Map(expansions.map((x) => [String(x.ideaId || ''), x]));
+  const all = [...queue, seedIdea].slice(0, maxIdeas);
+  const written = [];
+  for (const idea of all) {
+    const raw = byId.get(String(idea.id)) || (idea.kind === 'seed' ? seed : null);
+    const exp = normalize(raw, idea, map);
+    const target = writeIdea(exp);
+    written.push({ ideaId: exp.ideaId, title: exp.title, targetFolder: target });
+    append(path.join(root, '.agent', 'scheduled', 'lanes', '12-global-aggregator', 'findings.jsonl'), JSON.stringify({ date: new Date().toISOString(), runId, title: exp.title, targetFolder: target, selectedScopeFolder: exp.selectedScopeFolder }) + '\n');
+  }
   write(path.join(runDir, 'raw-model-output.txt'), modelText || '(no model output)');
   write(path.join(runDir, 'seed-idea.json'), JSON.stringify(seed, null, 2) + '\n');
-  write(path.join(target, 'README.md'), `# ${seed.title}\n\n${seed.summary || 'Generated by CascadeSeeder Lite.'}\n`);
-  write(path.join(target, 'idea.json'), JSON.stringify({ ...seed, runId, targetFolder: rel(target) }, null, 2) + '\n');
-  const report = `# CascadeSeeder Lite Full Run Log\n\n- Run ID: ${runId}\n- Model output present: ${Boolean(modelText)}\n- Seed target: ${rel(target)}\n`;
+  write(path.join(runDir, 'normalized-expansions.json'), JSON.stringify(written, null, 2) + '\n');
+  const llamaLogPath = path.join(runDir, 'llama-run-log.md');
+  const report = `# CascadeSeeder Lite Full Run Log\n\n- Run ID: ${runId}\n- Timestamp: ${new Date().toISOString()}\n- Intake ideas: ${queue.length}\n- Expansions written: ${written.length}\n- Model output present: ${modelOutputPresent}\n- Model output parsed: ${modelParsed}\n- Fallback used: ${!modelParsed}\n- llama.cpp log: ${exists(llamaLogPath) ? rel(llamaLogPath) : '.agent/runtime/llama-run-log.md'}\n\n## Written folders\n\n${written.map((x) => `- ${x.title}: ${x.targetFolder}`).join('\n')}\n\n## Next action\n\nReview generated scoped folders, then set HF_MODEL_URL to a Qwen3.5-2B GGUF URL for a model-backed run.\n`;
   write(path.join(runDir, 'full-run-log.md'), report);
   write(path.join(root, '.agent', 'turn-ledger', `${runId}.md`), report);
-  fs.appendFileSync(path.join(root, '.agent', 'run-log.md'), `\n## ${new Date().toISOString()} — CascadeSeeder Lite\n\n- Run ID: ${runId}\n- Seed target: ${rel(target)}\n`);
+  append(path.join(root, '.agent', 'run-log.md'), `\n## ${new Date().toISOString()} — CascadeSeeder Lite\n\n- Run ID: ${runId}\n- Expansions: ${written.length}\n- Model output parsed: ${modelParsed}\n- Log: ideas/generated-runs/${runId}/full-run-log.md\n`);
   console.log(report);
 }
 
