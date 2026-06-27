@@ -7,8 +7,18 @@ This folder contains the temporary live monitor used by the GitHub Actions workf
 - Starts a local HTTP monitor on port 8080.
 - Starts a temporary Cloudflare Quick Tunnel to that local monitor.
 - Posts `Live session visible here: <url>` to Discord when `DISCORD_WEBHOOK_URL` is configured.
-- Serves `state.json`, `events.jsonl`, and `full-run-log.md` while the workflow runner is alive.
+- Serves `state.json`, `events.jsonl`, `full-run-log.md`, and `exit-status` while the workflow runner is alive.
+- Includes an `Exit live monitor` button that asks the workflow to stop the post-run hold early.
 - The public link stops working when the GitHub Actions runner exits.
+
+## Trigger branch
+
+The expensive live/model workflow runs from the `build` branch, not `main`.
+
+```text
+main = safe edit branch
+build = live/model runner trigger branch
+```
 
 ## Required secret for Discord
 
@@ -16,7 +26,7 @@ This folder contains the temporary live monitor used by the GitHub Actions workf
 DISCORD_WEBHOOK_URL
 ```
 
-## Required variable for model-backed runs
+## Required secret for model-backed runs
 
 ```text
 HF_MODEL_URL
