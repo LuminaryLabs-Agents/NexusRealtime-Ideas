@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "tools": [
+    {
+      "name": "scan-next",
+      "purpose": "Locate the next unprocessed game record."
+    },
+    {
+      "name": "extract-domains",
+      "purpose": "Turn one game record into domain, subdomain, kit, and proof candidates."
+    },
+    {
+      "name": "generate-packets",
+      "purpose": "Generate tracked kit-idea packets for the record."
+    },
+    {
+      "name": "consume-record",
+      "purpose": "Mark the record tracked and advance the queue."
+    },
+    {
+      "name": "prepare-rawg-batch",
+      "purpose": "Call NexusRealtime-Automations GameRecordBatch-Harness to select the next stable 50 RAWG records."
+    },
+    {
+      "name": "advance-rawg-batch",
+      "purpose": "Call NexusRealtime-Automations GameRecordBatch-Harness to mark one extracted record consumed and mirror the next prompt."
+    },
+    {
+      "name": "mirror-domain-packets",
+      "purpose": "Write packet output into domain/subdomain folders."
+    },
+    {
+      "name": "audit-shards",
+      "purpose": "Review generated shards and emit feedback."
+    },
+    {
+      "name": "validate-packets",
+      "purpose": "Validate packet structure and first-proof coverage."
+    },
+    {
+      "name": "repair-feedback",
+      "purpose": "Apply fixable feedback and close the loop."
+    }
+  ]
+}

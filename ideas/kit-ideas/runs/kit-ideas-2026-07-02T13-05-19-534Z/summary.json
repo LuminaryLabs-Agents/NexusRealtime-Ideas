@@ -1,0 +1,13 @@
+{
+  "runId": "kit-ideas-2026-07-02T13-05-19-534Z",
+  "trackedCount": 1,
+  "packetTotal": 120,
+  "games": [
+    {
+      "gameId": "the-legend-of-zelda-ocarina-of-time",
+      "gameSlug": "the-legend-of-zelda-ocarina-of-time",
+      "gameName": "The Legend of Zelda: Ocarina of Time",
+      "packetCount": 120
+    }
+  ]
+}

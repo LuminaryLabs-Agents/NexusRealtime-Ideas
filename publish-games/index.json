@@ -1,0 +1,729 @@
+{
+  "version": 1,
+  "createdAt": "2026-07-02T10:57:58.712Z",
+  "chunkSize": 5000,
+  "recordCount": 881069,
+  "sourceCount": 881069,
+  "sources": {
+    "rawg_hf": {
+      "imported": 881069,
+      "chunkSize": 5000,
+      "dataset": "IVproger/rawg-games-dataset-updated",
+      "files": [
+        "data/train-00000-of-00002.parquet",
+        "data/train-00001-of-00002.parquet"
+      ]
+    }
+  },
+  "chunks": [
+    {
+      "path": "chunks/rawg-0001.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0002.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0003.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0004.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0005.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0006.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0007.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0008.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0009.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0010.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0011.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0012.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0013.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0014.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0015.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0016.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0017.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0018.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0019.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0020.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0021.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0022.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0023.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0024.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0025.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0026.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0027.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0028.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0029.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0030.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0031.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0032.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0033.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0034.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0035.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0036.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0037.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0038.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0039.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0040.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0041.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0042.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0043.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0044.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0045.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0046.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0047.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0048.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0049.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0050.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0051.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0052.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0053.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0054.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0055.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0056.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0057.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0058.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0059.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0060.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0061.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0062.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0063.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0064.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0065.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0066.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0067.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0068.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0069.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0070.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0071.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0072.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0073.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0074.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0075.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0076.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0077.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0078.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0079.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0080.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0081.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0082.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0083.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0084.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0085.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0086.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0087.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0088.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0089.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0090.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0091.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0092.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0093.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0094.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0095.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0096.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0097.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0098.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0099.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0100.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0101.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0102.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0103.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0104.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0105.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0106.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0107.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0108.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0109.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0110.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0111.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0112.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0113.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0114.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0115.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0116.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0117.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0118.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0119.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0120.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0121.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0122.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0123.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0124.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0125.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0126.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0127.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0128.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0129.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0130.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0131.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0132.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0133.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0134.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0135.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0136.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0137.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0138.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0139.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0140.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0141.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0142.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0143.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0144.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0145.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0146.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0147.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0148.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0149.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0150.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0151.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0152.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0153.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0154.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0155.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0156.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0157.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0158.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0159.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0160.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0161.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0162.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0163.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0164.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0165.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0166.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0167.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0168.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0169.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0170.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0171.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0172.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0173.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0174.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0175.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0176.jsonl",
+      "count": 5000
+    },
+    {
+      "path": "chunks/rawg-0177.jsonl",
+      "count": 1069
+    }
+  ],
+  "updatedAt": "2026-07-02T11:19:43.094899Z"
+}

@@ -1,0 +1,13 @@
+{
+  "runId": "kit-ideas-2026-07-02T14-42-33-975Z",
+  "trackedCount": 1,
+  "packetTotal": 120,
+  "games": [
+    {
+      "gameId": "soulcalibur",
+      "gameSlug": "soulcalibur",
+      "gameName": "Soulcalibur",
+      "packetCount": 120
+    }
+  ]
+}

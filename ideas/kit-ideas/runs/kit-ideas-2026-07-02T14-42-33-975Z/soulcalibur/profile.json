@@ -1,0 +1,58 @@
+{
+  "id": "soulcalibur",
+  "slug": "soulcalibur",
+  "name": "Soulcalibur",
+  "category": "action-fighting",
+  "subcategory": "xbox-one-ios-xbox-360-android-dreamcast",
+  "cost": null,
+  "timeToPlay": 6,
+  "description": "Soulcalibur (ソウルキャリバー, Sōrukyaribā) is a weapon-based 3D fighting game developed by Project Soul and produced by Namco. It is the second game in the Soulcalibur series, preceded by Soul Edge in December 1995. Originally released in arcades in July 1998, it ran on the Namco System 12 hardware. It was ported to the Dreamcast in 1999 with new features and improved graphics. The North American version was released in September 1999 as a launch game for the Dreamcast and was part of the successful launch of the new console. It became available as a downloadable title on the Xbox 360's Xbox Live Marketplace in July 2008 and it is backwards compatible with the Xbox One along with the sequel. A sequel, Soulcalibur II, was released in July 2002. The game centers on the pursuit of the legendary weapon known as Soul Edge, now in the possession of a warrior known as Nightmare, who slaughters countless people to satisfy the blade's bloodlust. Other warriors pursue him either to claim the weapon for themselves or to destroy it, end his mass murder, and free him of its curse. Developed closely with Namco's Tekken development team, it is one of few home console ports that outdid their arcade parent graphics-wise. The title brought many innovations to the fighting game genre that include a heavy emphasis on weapons and a unique eight-way movement system. Soulcalibur is widely regarded as one of the best Dreamcast titles and is often cited as among the greatest fighting games ever released, as well as one of the best video games of all time.",
+  "timeline": [
+    {
+      "step": 1,
+      "label": "setup",
+      "detail": "Enter the action-fighting loop and establish the starting state."
+    },
+    {
+      "step": 2,
+      "label": "first action",
+      "detail": "Make the first meaningful move or decision."
+    },
+    {
+      "step": 3,
+      "label": "core loop",
+      "detail": "Repeat the main play pattern and build momentum."
+    },
+    {
+      "step": 4,
+      "label": "escalation",
+      "detail": "Challenge, pressure, or complexity increases."
+    },
+    {
+      "step": 5,
+      "label": "session end",
+      "detail": "Resolve the run, match, or play session."
+    }
+  ],
+  "source": "hf:IVproger/rawg-games-dataset-updated",
+  "sourceId": null,
+  "sourceUrl": "https://rawg.io/games/soulcalibur",
+  "released": "1998-07-30 03:19:54",
+  "rating": 4.37,
+  "metacritic": 98,
+  "genres": [
+    "Action, Fighting"
+  ],
+  "platforms": [
+    "Xbox One, iOS, Xbox 360, Android, Dreamcast"
+  ],
+  "tags": [
+    "2 players"
+  ],
+  "developers": [
+    "BANDAI NAMCO Entertainment America, NAMCO, Project Soul"
+  ],
+  "publishers": [
+    "Bandai Namco Entertainment, Namco"
+  ]
+}

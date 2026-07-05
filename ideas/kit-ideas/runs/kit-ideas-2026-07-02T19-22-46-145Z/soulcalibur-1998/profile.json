@@ -1,0 +1,54 @@
+{
+  "id": "soulcalibur-1998",
+  "slug": "soulcalibur-1998",
+  "name": "Soulcalibur (1998)",
+  "category": "fighting",
+  "subcategory": "dreamcast-xbox-360",
+  "cost": null,
+  "timeToPlay": 0,
+  "description": "The sequel to Soul Edge arrived in video arcades a year later, with an exclusive porting to the Dreamcast console in 1999. The plot is set two–three years after the first game's and the title is derived from Soul Calibur, a legendary weapon which opposes the evil of Soul Edge. Soul Calibur was also known as Soul Blade as an updated version which released on the Sega Dreamcast. This title would come to express the Soul series as a whole, establishing its popularity in video gaming history as it garnered positive reviews from gaming fans and critics. Though retaining elements of its predecessor, Soulcalibur incorporated an extensive number of new features, including the \"8-Way Run\". The title Soulcalibur became a trademark title to be used throughout entire sequel ever since. In 2008, Namco Bandai released Soulcalibur on the Xbox Live Arcade for the Xbox 360. Although online leaderboards and achievements were supported in this version, there was no online playing mode or mission mode, as there was in the Dreamcast version",
+  "timeline": [
+    {
+      "step": 1,
+      "label": "setup",
+      "detail": "Enter the fighting loop and establish the starting state."
+    },
+    {
+      "step": 2,
+      "label": "first action",
+      "detail": "Make the first meaningful move or decision."
+    },
+    {
+      "step": 3,
+      "label": "core loop",
+      "detail": "Repeat the main play pattern and build momentum."
+    },
+    {
+      "step": 4,
+      "label": "escalation",
+      "detail": "Challenge, pressure, or complexity increases."
+    },
+    {
+      "step": 5,
+      "label": "session end",
+      "detail": "Resolve the run, match, or play session."
+    }
+  ],
+  "source": "hf:IVproger/rawg-games-dataset-updated",
+  "sourceId": null,
+  "sourceUrl": "https://rawg.io/games/soulcalibur-1998",
+  "released": "1998-07-30 12:28:13",
+  "rating": 0,
+  "metacritic": 98,
+  "genres": [
+    "Fighting"
+  ],
+  "platforms": [
+    "Dreamcast, Xbox 360"
+  ],
+  "tags": [],
+  "developers": [],
+  "publishers": [
+    "Bandai Namco Entertainment, Namco"
+  ]
+}

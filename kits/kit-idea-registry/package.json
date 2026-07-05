@@ -1,0 +1,10 @@
+{
+  "name": "@nexus-realtime-kits/kit-idea-registry",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js"
+  }
+}

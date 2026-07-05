@@ -1,0 +1,9 @@
+{
+  "runId": "kit-ideas-2026-07-02T21-24-41-362Z",
+  "gameId": "super-mario-galaxy-2",
+  "gameSlug": "super-mario-galaxy-2",
+  "gameName": "Super Mario Galaxy 2",
+  "domain": "replay",
+  "subdomain": "deterministic-replay",
+  "packetCount": 5
+}

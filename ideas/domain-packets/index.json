@@ -1,0 +1,469 @@
+{
+  "version": 1,
+  "packetCount": 360,
+  "runs": [
+    {
+      "runId": "kit-ideas-2026-07-02T14-42-33-975Z",
+      "gameId": "soulcalibur",
+      "gameSlug": "soulcalibur",
+      "gameName": "Soulcalibur",
+      "packetCount": 120,
+      "groups": [
+        {
+          "domain": "movement",
+          "subdomain": "movement-control",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/movement/movement-control/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "traversal",
+          "subdomain": "surface-traversal",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/traversal/surface-traversal/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "combat",
+          "subdomain": "encounter-combat",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/combat/encounter-combat/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "camera",
+          "subdomain": "camera-control",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/camera/camera-control/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "input",
+          "subdomain": "semantic-input",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/input/semantic-input/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "objectives",
+          "subdomain": "goal-flow",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/objectives/goal-flow/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "progression",
+          "subdomain": "reward-progression",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/progression/reward-progression/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "economy",
+          "subdomain": "resource-economy",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/economy/resource-economy/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "loot",
+          "subdomain": "drop-loot",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/loot/drop-loot/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "inventory",
+          "subdomain": "item-inventory",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/inventory/item-inventory/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "crafting",
+          "subdomain": "recipe-crafting",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/crafting/recipe-crafting/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "dialogue",
+          "subdomain": "branch-dialogue",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/dialogue/branch-dialogue/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "quest",
+          "subdomain": "quest-flow",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/quest/quest-flow/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "world",
+          "subdomain": "world-state",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/world/world-state/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "social",
+          "subdomain": "party-social",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/social/party-social/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "replay",
+          "subdomain": "deterministic-replay",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/replay/deterministic-replay/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "save",
+          "subdomain": "save-state",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/save/save-state/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "difficulty",
+          "subdomain": "challenge-scale",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/difficulty/challenge-scale/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "enemy-pressure",
+          "subdomain": "enemy-pressure",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/enemy-pressure/enemy-pressure/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "boss-rules",
+          "subdomain": "boss-phases",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/boss-rules/boss-phases/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "reward-loop",
+          "subdomain": "feedback-loop",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/reward-loop/feedback-loop/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "tutorial",
+          "subdomain": "onboarding",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/tutorial/onboarding/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "state-management",
+          "subdomain": "state-ledger",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/state-management/state-ledger/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        },
+        {
+          "domain": "presentation",
+          "subdomain": "presentation-layer",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/presentation/presentation-layer/soulcalibur/kit-ideas-2026-07-02T14-42-33-975Z"
+        }
+      ],
+      "createdAt": "2026-07-02T14:42:34.102Z"
+    },
+    {
+      "runId": "kit-ideas-2026-07-02T19-22-46-145Z",
+      "gameId": "soulcalibur-1998",
+      "gameSlug": "soulcalibur-1998",
+      "gameName": "Soulcalibur (1998)",
+      "packetCount": 120,
+      "groups": [
+        {
+          "domain": "movement",
+          "subdomain": "movement-control",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/movement/movement-control/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "traversal",
+          "subdomain": "surface-traversal",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/traversal/surface-traversal/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "combat",
+          "subdomain": "encounter-combat",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/combat/encounter-combat/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "camera",
+          "subdomain": "camera-control",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/camera/camera-control/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "input",
+          "subdomain": "semantic-input",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/input/semantic-input/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "objectives",
+          "subdomain": "goal-flow",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/objectives/goal-flow/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "progression",
+          "subdomain": "reward-progression",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/progression/reward-progression/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "economy",
+          "subdomain": "resource-economy",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/economy/resource-economy/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "loot",
+          "subdomain": "drop-loot",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/loot/drop-loot/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "inventory",
+          "subdomain": "item-inventory",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/inventory/item-inventory/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "crafting",
+          "subdomain": "recipe-crafting",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/crafting/recipe-crafting/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "dialogue",
+          "subdomain": "branch-dialogue",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/dialogue/branch-dialogue/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "quest",
+          "subdomain": "quest-flow",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/quest/quest-flow/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "world",
+          "subdomain": "world-state",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/world/world-state/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "social",
+          "subdomain": "party-social",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/social/party-social/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "replay",
+          "subdomain": "deterministic-replay",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/replay/deterministic-replay/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "save",
+          "subdomain": "save-state",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/save/save-state/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "difficulty",
+          "subdomain": "challenge-scale",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/difficulty/challenge-scale/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "enemy-pressure",
+          "subdomain": "enemy-pressure",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/enemy-pressure/enemy-pressure/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "boss-rules",
+          "subdomain": "boss-phases",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/boss-rules/boss-phases/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "reward-loop",
+          "subdomain": "feedback-loop",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/reward-loop/feedback-loop/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "tutorial",
+          "subdomain": "onboarding",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/tutorial/onboarding/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "state-management",
+          "subdomain": "state-ledger",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/state-management/state-ledger/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        },
+        {
+          "domain": "presentation",
+          "subdomain": "presentation-layer",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/presentation/presentation-layer/soulcalibur-1998/kit-ideas-2026-07-02T19-22-46-145Z"
+        }
+      ],
+      "createdAt": "2026-07-02T19:22:46.175Z"
+    },
+    {
+      "runId": "kit-ideas-2026-07-02T21-24-41-362Z",
+      "gameId": "super-mario-galaxy-2",
+      "gameSlug": "super-mario-galaxy-2",
+      "gameName": "Super Mario Galaxy 2",
+      "packetCount": 120,
+      "groups": [
+        {
+          "domain": "movement",
+          "subdomain": "movement-control",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/movement/movement-control/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "traversal",
+          "subdomain": "surface-traversal",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/traversal/surface-traversal/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "combat",
+          "subdomain": "encounter-combat",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/combat/encounter-combat/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "camera",
+          "subdomain": "camera-control",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/camera/camera-control/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "input",
+          "subdomain": "semantic-input",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/input/semantic-input/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "objectives",
+          "subdomain": "goal-flow",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/objectives/goal-flow/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "progression",
+          "subdomain": "reward-progression",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/progression/reward-progression/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "economy",
+          "subdomain": "resource-economy",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/economy/resource-economy/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "loot",
+          "subdomain": "drop-loot",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/loot/drop-loot/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "inventory",
+          "subdomain": "item-inventory",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/inventory/item-inventory/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "crafting",
+          "subdomain": "recipe-crafting",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/crafting/recipe-crafting/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "dialogue",
+          "subdomain": "branch-dialogue",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/dialogue/branch-dialogue/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "quest",
+          "subdomain": "quest-flow",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/quest/quest-flow/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "world",
+          "subdomain": "world-state",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/world/world-state/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "social",
+          "subdomain": "party-social",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/social/party-social/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "replay",
+          "subdomain": "deterministic-replay",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/replay/deterministic-replay/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "save",
+          "subdomain": "save-state",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/save/save-state/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "difficulty",
+          "subdomain": "challenge-scale",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/difficulty/challenge-scale/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "enemy-pressure",
+          "subdomain": "enemy-pressure",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/enemy-pressure/enemy-pressure/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "boss-rules",
+          "subdomain": "boss-phases",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/boss-rules/boss-phases/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "reward-loop",
+          "subdomain": "feedback-loop",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/reward-loop/feedback-loop/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "tutorial",
+          "subdomain": "onboarding",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/tutorial/onboarding/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "state-management",
+          "subdomain": "state-ledger",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/state-management/state-ledger/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        },
+        {
+          "domain": "presentation",
+          "subdomain": "presentation-layer",
+          "packetCount": 5,
+          "path": "ideas/domain-packets/presentation/presentation-layer/super-mario-galaxy-2/kit-ideas-2026-07-02T21-24-41-362Z"
+        }
+      ],
+      "createdAt": "2026-07-02T21:24:41.429Z"
+    }
+  ],
+  "updatedAt": "2026-07-02T21:24:41.430Z"
+}

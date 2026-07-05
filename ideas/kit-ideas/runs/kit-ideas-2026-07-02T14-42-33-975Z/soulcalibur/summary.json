@@ -1,0 +1,8 @@
+{
+  "gameId": "soulcalibur",
+  "gameName": "Soulcalibur",
+  "gameSlug": "soulcalibur",
+  "sourceFile": "games/rawg/chunks/rawg-0001.jsonl",
+  "sourceLine": 2,
+  "packetCount": 120
+}

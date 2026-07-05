@@ -1,0 +1,58 @@
+{
+  "id": "the-legend-of-zelda-ocarina-of-time",
+  "slug": "the-legend-of-zelda-ocarina-of-time",
+  "name": "The Legend of Zelda: Ocarina of Time",
+  "category": "action-adventure-rpg",
+  "subcategory": "nintendo-switch-nintendo-64",
+  "cost": null,
+  "timeToPlay": 7,
+  "description": "As a young boy, Link is tricked by Ganondorf, the King of the Gerudo Thieves. The evil human uses Link to gain access to the Sacred Realm, where he places his tainted hands on Triforce and transforms the beautiful Hyrulean landscape into a barren wasteland. Link is determined to fix the problems he helped to create, so with the help of Rauru he travels through time gathering the powers of the Seven Sages.",
+  "timeline": [
+    {
+      "step": 1,
+      "label": "setup",
+      "detail": "Enter the action-adventure-rpg loop and establish the starting state."
+    },
+    {
+      "step": 2,
+      "label": "first action",
+      "detail": "Make the first meaningful move or decision."
+    },
+    {
+      "step": 3,
+      "label": "core loop",
+      "detail": "Repeat the main play pattern and build momentum."
+    },
+    {
+      "step": 4,
+      "label": "escalation",
+      "detail": "Challenge, pressure, or complexity increases."
+    },
+    {
+      "step": 5,
+      "label": "session end",
+      "detail": "Resolve the run, match, or play session."
+    }
+  ],
+  "source": "hf:IVproger/rawg-games-dataset-updated",
+  "sourceId": null,
+  "sourceUrl": "https://rawg.io/games/the-legend-of-zelda-ocarina-of-time",
+  "released": "1998-11-21 06:56:26",
+  "rating": 4.38,
+  "metacritic": 99,
+  "genres": [
+    "Action, Adventure, RPG"
+  ],
+  "platforms": [
+    "Nintendo Switch, Nintendo 64"
+  ],
+  "tags": [
+    "Singleplayer"
+  ],
+  "developers": [
+    "Nintendo"
+  ],
+  "publishers": [
+    "Nintendo"
+  ]
+}

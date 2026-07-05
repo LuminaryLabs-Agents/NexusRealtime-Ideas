@@ -1,0 +1,58 @@
+{
+  "id": "super-mario-galaxy-2",
+  "slug": "super-mario-galaxy-2",
+  "name": "Super Mario Galaxy 2",
+  "category": "platformer",
+  "subcategory": "wii-wii-u",
+  "cost": null,
+  "timeToPlay": 18,
+  "description": "Mario is invited to Princess Peach's castle, and on his way notices a strange light in the grass. As he peers cautiously through the reeds, he sees a small, lost Luma. With the baby Luma tucked safely under his cap, Mario rushes on to the castle. But when he gets there, something unexpected is waiting for him... Collect stars as Mario travels from galaxy to galaxy, working through various levels—sometimes upside-down, sometimes floating from place to place. Mario can also team up with his dinosaur buddy Yoshi, who adds a number of possibilities to the gravity-defying gameplay. Power-ups for Mario and Yoshi will give them new abilities to help platform to unreachable areas, or defeat strong enemies. Skilled players will want to collect Comet Metals to unlock harder levels with even more challenges. Play solo or partner up with a friend or family member as you prepare for liftoff and discovery! Please note that this game does not include Miiverse support. The following controllers are required to play this game: Wii Remote + Nunchuck.",
+  "timeline": [
+    {
+      "step": 1,
+      "label": "setup",
+      "detail": "Enter the platformer loop and establish the starting state."
+    },
+    {
+      "step": 2,
+      "label": "first action",
+      "detail": "Make the first meaningful move or decision."
+    },
+    {
+      "step": 3,
+      "label": "core loop",
+      "detail": "Repeat the main play pattern and build momentum."
+    },
+    {
+      "step": 4,
+      "label": "escalation",
+      "detail": "Challenge, pressure, or complexity increases."
+    },
+    {
+      "step": 5,
+      "label": "session end",
+      "detail": "Resolve the run, match, or play session."
+    }
+  ],
+  "source": "hf:IVproger/rawg-games-dataset-updated",
+  "sourceId": null,
+  "sourceUrl": "https://rawg.io/games/super-mario-galaxy-2",
+  "released": "2010-05-23 10:02:27",
+  "rating": 4.34,
+  "metacritic": 97,
+  "genres": [
+    "Platformer"
+  ],
+  "platforms": [
+    "Wii, Wii U"
+  ],
+  "tags": [
+    "collect, Solo, galaxy, light, castle, Gravity, princess, mario, baby"
+  ],
+  "developers": [
+    "Nintendo"
+  ],
+  "publishers": [
+    "Nintendo"
+  ]
+}

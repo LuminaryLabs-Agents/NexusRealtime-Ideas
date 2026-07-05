@@ -1,0 +1,9 @@
+{
+  "dataset": "IVproger/rawg-games-dataset-updated",
+  "sourceFiles": [
+    "data/train-00000-of-00002.parquet",
+    "data/train-00001-of-00002.parquet"
+  ],
+  "imported": 881069,
+  "chunkSize": 5000
+}

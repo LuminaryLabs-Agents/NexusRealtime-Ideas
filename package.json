@@ -4,6 +4,17 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "games:cli": "node scripts/game-profile-cli.mjs",
+    "games:init": "node scripts/game-profile-cli.mjs init",
+    "games:estimate": "node scripts/game-profile-cli.mjs estimate --count 200000 --profile compact",
+    "games:split": "node scripts/game-profile-cli.mjs plan-split --dir ./games",
+    "games:audit": "node scripts/game-profile-cli.mjs audit",
+    "games:validate": "node scripts/game-profile-validator.mjs --path ./games",
+    "games:fix": "node scripts/game-profile-cli.mjs fix-feedback",
+    "games:import-rawg": "node scripts/game-profile-cli.mjs import-rawg --limit 200000",
+    "games:import-rawg-hf": "node scripts/game-profile-cli.mjs import-rawg-hf",
+    "ideas:kit-next": "node scripts/game-profile-cli.mjs kit-ideas-next --count 5",
+    "ideas:kit-generate": "node scripts/game-profile-cli.mjs kit-ideas-generate --count 1 --packets 120",
     "cascadeseeder:folderwalker": "node harnesses/cascadeseeder-lite/scripts/run-folderwalker.mjs",
     "idea-forge:run": "npm run cascadeseeder:folderwalker"
   },

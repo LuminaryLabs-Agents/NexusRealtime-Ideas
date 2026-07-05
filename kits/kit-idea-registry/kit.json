@@ -1,0 +1,45 @@
+{
+  "id": "kit-idea-registry",
+  "domain": "game-kit-ideas",
+  "kind": "domain-service",
+  "purpose": "Track game profiles, generate 100+ NexusRealtime kit idea packets per unprocessed game, and write those packets into the repo-local kit ideas lane.",
+  "status": "experimental",
+  "owns": {
+    "state": [],
+    "resources": [],
+    "events": [],
+    "surfaces": []
+  },
+  "accepts": {
+    "inputs": [],
+    "config": {}
+  },
+  "installs": {
+    "systems": [],
+    "schedulerPhases": []
+  },
+  "requires": [],
+  "composes": [],
+  "publishes": {
+    "engineApi": "engine.n.gameKitIdeas",
+    "snapshot": true,
+    "reset": true
+  },
+  "validation": {
+    "headless": [],
+    "smoke": [],
+    "snapshot": [],
+    "manual": []
+  },
+  "promotion": {
+    "safeToPromote": false,
+    "criteria": [
+      "generic beyond one route or app",
+      "deterministic where required",
+      "reset-capable when stateful",
+      "snapshot-capable when stateful",
+      "tested or smoke-validated",
+      "documented for humans and agents"
+    ]
+  }
+}
