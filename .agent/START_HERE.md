@@ -5,13 +5,14 @@
 ## Read order
 
 1. Read `.agent/START_HERE.md`.
-2. Read `.agent/current-state.md`.
-3. Read `.agent/workflow.md`.
-4. Read `.agent/pointer.md`.
-5. Read `scopes/README.md`.
-6. If the turn is scheduled-lane work, read `.agent/scheduled/scheduler-rules.md` and the matching `.agent/scheduled/saved-state-{index}.md`.
-7. Make one bounded change.
-8. Record the result in `.agent/run-log.md`, `.agent/turn-ledger/`, and lane-local notes when applicable.
+2. Read `.agent/repository-profile.md`.
+3. Read `.agent/current-state.md`.
+4. Read `.agent/workflow.md`.
+5. Read `.agent/pointer.md`.
+6. Read `scopes/README.md`.
+7. If the turn is scheduled-lane work, read `.agent/scheduled/scheduler-rules.md` and the matching `.agent/scheduled/saved-state-{index}.md`.
+8. Make one bounded change.
+9. Record the result in `.agent/run-log.md`, `.agent/turn-ledger/`, and lane-local notes when applicable.
 
 ## Operating rule
 
