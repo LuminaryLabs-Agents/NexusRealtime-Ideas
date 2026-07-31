@@ -1,79 +1,86 @@
 # NexusRealtime Ideas
 
-NexusRealtime Ideas is the folder-driven planning, cataloguing, and domain-discovery repo for the NexusRealtime ecosystem.
+![NexusRealtime Ideas workflow](docs/assets/brand/social-card.png)
 
-This repo does **not** own stable runtime code, ProtoKit implementation, or playable experiment routes.
-
-It owns structured thinking:
+NexusRealtime Ideas is the folder-driven research, catalogue, and candidate-packet workspace for the NexusRealtime ecosystem. It turns source game records and scoped observations into reviewable domain-kit ideas without owning stable runtime code.
 
 ```text
-idea -> scoped domain folder -> catalogue finding -> candidate packet -> builder queue -> ProtoKits review
+source record -> scoped catalogue -> validation feedback -> candidate packet -> builder queue
 ```
 
-## Core rule
+## Repository boundary
 
-**Scope is always a folder.**
+This repository owns:
 
-Do not store important scope only as a tag, heading, issue label, or free-floating note.
+- domain and gameplay idea discovery;
+- game-profile intake and bounded JSONL exports;
+- validation feedback and repair records;
+- kit-idea packets, promotion notes, and builder queues;
+- agent operating state for catalogue work.
 
-Every meaningful idea must live under a folder that states its current scope.
-
-## Repo roles
-
-```text
-NexusRealtime Core        = stable runtime and promoted contracts
-NexusRealtime-ProtoKits   = reusable pre-Core domain kit implementation
-NexusRealtime-Experiments = playable validation hosts
-NexusRealtime-Ideas       = domain catalogue, exploration, saved states, and builder queues
-```
-
-## Build branch runner
-
-```text
-main  = safe edit branch
-build = live/model runner trigger branch
-```
-
-The build branch workflow starts the live monitor, posts the temporary Discord link, runs the NVIDIA NIM provider first, falls back to llama.cpp only if needed, then writes generated idea output and logs.
-
-Required runtime secrets:
-
-```text
-DISCORD_WEBHOOK_URL
-NVIDIA_API_KEY
-```
-
-Optional fallback secrets:
-
-```text
-HF_MODEL_URL
-HF_TOKEN
-```
+It does not own NexusRealtime Core, ProtoKit implementation, or playable experiment routes. Those belong in their respective implementation repositories.
 
 ## Start here
 
-Read:
+1. Read [`.agent/START_HERE.md`](.agent/START_HERE.md).
+2. Review [`.agent/current-state.md`](.agent/current-state.md) and [`.agent/workflow.md`](.agent/workflow.md).
+3. Choose one folder-scoped task from [`scopes/`](scopes/README.md).
+4. Use the relevant command from [`docs/operations.md`](docs/operations.md).
+5. Record evidence in the required `.agent/` lane before stopping.
+
+The governing rule is **scope is always a folder**. A tag, issue, or free-form note is not the durable owner of an idea.
+
+## Repository map
 
 ```text
-.agent/START_HERE.md
-.agent/workflow.md
-.agent/current-state.md
-scopes/README.md
+.agent/          Operating state, saved lanes, promotion gates, and run records
+scopes/          Domain scope cascade from inbox to promotion or hold
+sources/         Source provenance and import manifests
+games/           Source game profiles
+publish-games/   Reusable JSONL exports, capped at 5,000 records per chunk
+feedback/        Audit summaries and line-addressable repair findings
+ideas/           Intake, generated runs, tracking state, and domain packets
+harnesses/       CascadeSeeder Lite idea-generation harness
+scripts/         Game-profile CLI, validator, and source import tooling
+kits/            Experimental kit-idea registry
+docs/            Architecture, contracts, operations, and visual guidance
 ```
 
-## Folder-driven cascade
+## Safe orientation
 
-```text
-scopes/
-  00-inbox/
-  10-atomic-domains/
-  20-domain-families/
-  30-composite-loops/
-  40-host-bridges/
-  50-render-descriptors/
-  60-incubation-suites/
-  70-promotion-candidates/
-  80-blocked-or-held/
+Node.js 20 or newer is required. These commands inspect state without intentionally changing catalogue records:
+
+```bash
+npm run games:estimate
+npm run games:split
+npm run ideas:kit-next
+node scripts/game-profile-cli.mjs validate --path games/rawg/chunks/rawg-0001.jsonl
 ```
 
-Scheduled tasks are **not enabled from this repo yet**.
+The full corpus is large. Run bounded validation first. `games:audit`, `games:fix`, imports, packet generation, and CascadeSeeder runs write repository data; read [the operations guide](docs/operations.md) before using them.
+
+## Current recorded scale
+
+The committed indexes record:
+
+- 881,069 RAWG-derived profiles in 177 chunks;
+- a 5,000-record export chunk limit;
+- four tracked kit-idea runs producing 480 packets;
+- a historical full-corpus audit on 2026-07-02 reporting zero issues.
+
+These are repository records, not a guarantee about later changes. Revalidate the affected scope before relying on them.
+
+## Automation
+
+CascadeSeeder Lite runs from the `build` branch or manual workflow dispatch. Its latest listed GitHub Actions run succeeded on 2026-06-27. The workflow can use NVIDIA NIM, fall back to llama.cpp, emit run evidence, and commit generated catalogue output to `build`.
+
+Scheduled catalogue workers are still planned, not enabled. Do not create schedules unless explicitly requested.
+
+## Documentation
+
+- [Documentation index](docs/README.md)
+- [Architecture](docs/architecture.md)
+- [Data contracts](docs/data-contracts.md)
+- [Operations](docs/operations.md)
+- [Contributing](CONTRIBUTING.md)
+- [Security](SECURITY.md)
